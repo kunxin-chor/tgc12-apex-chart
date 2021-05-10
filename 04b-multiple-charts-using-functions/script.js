@@ -2,43 +2,29 @@ let data = [10, 11, 13, 50, 70, 21];
 let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
 
 let meteorSightings = [20, 10, 11, 33, 24, 55];
+let revenue = [1,2,3,4,5,6];
 
-// ufo sightings chart
-const ufoChartOptions = {
-    'chart': {
-        'type': 'line',
-        'height': '100%'
-    },
-    'series':[
-        {
-            'name':'ufo-sightings',
-            'data': data
+function createChart(type, data, name, xaxis, element) {
+    const options = {
+        'chart': {
+            'type': type,
+            'height': '100%'
+        },
+        'series': [
+            {
+                'data': data,
+                'name': name
+            }
+        ],
+        'xaxis': {
+            'categories': xaxis
         }
-    ],
-    'xaxis': {
-        'categories': months
-    }
+    }    
+    const chart = new ApexCharts(element, options);
+    chart.render();
+    return chart;
 }
 
-const ufoChart = new ApexCharts(document.querySelector('#ufo-chart'), ufoChartOptions);
-ufoChart.render();
-
-// Chart 2 - meteor sightings
-const meteorChartOptions = {
-    'chart': {
-        'type': 'bar',
-        'height': '100%'
-    }, 
-    'series':[
-        {
-            'name':'meteor-sightings',
-            'data': meteorSightings
-        }
-    ],
-    'xaxis': {
-        'categories': months
-    }
-}
-
-const meteorChart = new ApexCharts(document.querySelector('#meteors-chart'), meteorChartOptions);
-meteorChart.render();
+createChart('line', data, 'ufo-sightings', months, document.querySelector('#ufo-chart'));
+createChart('bar', meteorSightings, 'meteor-sightings', months, document.querySelector('#meteors-chart'))
+createChart('line', revenue, 'meteor-sightings-line-chart', months, document.querySelector('#meteors-line-chart'));
