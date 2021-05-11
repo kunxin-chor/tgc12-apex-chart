@@ -7,7 +7,7 @@ const chartOptions = {
     'series': [],
     'noData': {
         'text':"Please wait, loading"
-    },
+    }
 }
 
 const chart = new ApexCharts(document.querySelector('#chart'), chartOptions);

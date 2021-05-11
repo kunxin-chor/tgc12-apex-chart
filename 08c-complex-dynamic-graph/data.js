@@ -68,6 +68,9 @@ function transformData(rawData, country) {
   // GROUP BY
   let groups = {};
 
+  for (let i = 0; i < 12; i++) {
+      groups[i] = [];
+  }
 
   /*
     {
@@ -79,12 +82,6 @@ function transformData(rawData, country) {
   for (let datnum of filtered) {
     // retrieve the month that the transaction happens in
     let month = datnum.date.getMonth();
-
-    // check if the groups object does not contain an array for the month variable
-    if (!groups[month]) {
-      groups[month] = [];
-    }
-
     groups[month].push(datnum);
   }
 
